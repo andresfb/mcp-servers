@@ -42,7 +42,7 @@ final class User extends Authenticatable implements MustVerifyEmail, OAuthentica
 
     public function settings(): HasMany
     {
-        return $this->hasMany(UserSettigns::class);
+        return $this->hasMany(UserSettings::class);
     }
 
     /**

@@ -7,5 +7,9 @@ use Laravel\Mcp\Facades\Mcp;
 
 Mcp::oauthRoutes();
 
-Mcp::web('/mcp/writing', WritingPromptServer::class)
-    ->middleware('auth:api');
+Route::middleware(['auth:api', 'throttle'])->group(function () {
+
+    Mcp::web('/mcp/writing', WritingPromptServer::class)
+        ->name('mcp.writing');
+
+});

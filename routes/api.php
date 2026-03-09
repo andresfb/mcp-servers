@@ -1,8 +1,17 @@
 <?php
 
-use Illuminate\Http\Request;
+declare(strict_types=1);
+
+use App\Http\Controllers\API\V1\LoginController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::prefix('v1')->group(function () {
+
+    Route::prefix('auth')->group(function (): void {
+        Route::middleware('auth:api')->group(function (): void {
+            Route::post('/logout', [LoginController::class, 'destroy'])
+                ->name('logout');
+        });
+    });
+
+});

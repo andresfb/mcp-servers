@@ -11,7 +11,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('user_settigns', static function (Blueprint $table) {
+        Schema::create('user_settings', static function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)
                 ->constrained('users')
@@ -26,6 +26,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('user_settigns');
+        Schema::dropIfExists('user_settings');
     }
 };

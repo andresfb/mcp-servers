@@ -16,7 +16,7 @@ use Override;
  * @property-read CarbonInterface|null $created_at
  * @property-read CarbonInterface|null $update_at
  */
-final class UserSettigns extends Model
+final class UserSettings extends Model
 {
     protected $guarded = ['id'];
 

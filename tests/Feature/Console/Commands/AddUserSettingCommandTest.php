@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use App\Models\UserSettigns;
+use App\Models\UserSettings;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -26,7 +26,7 @@ it('adds a setting for an authenticated user', function () {
         'key' => 'api_key',
     ]);
 
-    $setting = UserSettigns::where('user_id', $user->id)->where('key', 'api_key')->first();
+    $setting = UserSettings::where('user_id', $user->id)->where('key', 'api_key')->first();
     expect($setting->value)->toBe('some-secret-value');
 });
 
@@ -35,7 +35,7 @@ it('updates an existing setting with the same key', function () {
         'password' => bcrypt('Password123!'),
     ]);
 
-    UserSettigns::create([
+    UserSettings::create([
         'user_id' => $user->id,
         'key' => 'api_key',
         'value' => 'old-value',
@@ -49,9 +49,9 @@ it('updates an existing setting with the same key', function () {
         ->expectsPromptsOutro('Done')
         ->assertSuccessful();
 
-    expect(UserSettigns::where('user_id', $user->id)->where('key', 'api_key')->count())->toBe(1);
+    expect(UserSettings::where('user_id', $user->id)->where('key', 'api_key')->count())->toBe(1);
 
-    $setting = UserSettigns::where('user_id', $user->id)->where('key', 'api_key')->first();
+    $setting = UserSettings::where('user_id', $user->id)->where('key', 'api_key')->first();
     expect($setting->value)->toBe('new-value');
 });
 

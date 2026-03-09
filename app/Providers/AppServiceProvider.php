@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Carbon\CarbonInterval;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Override;
+use Symfony\Component\HttpFoundation\Response;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,12 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Passport::authorizationView('vendor.passport.authorize');
+        Passport::authorizationView(static function (array $parameters): Response {
+            return response(view('mcp.authorize', $parameters)->render());
+        });
+
+        Passport::tokensExpireIn(CarbonInterval::days(60));
+        Passport::refreshTokensExpireIn(CarbonInterval::days(90));
+        Passport::personalAccessTokensExpireIn(CarbonInterval::months(6));
     }
 }
