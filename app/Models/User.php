@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\Contracts\OAuthenticatable;
+use Laravel\Passport\HasApiTokens;
 use Override;
 
-final class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable implements MustVerifyEmail, OAuthenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass-assignable.
