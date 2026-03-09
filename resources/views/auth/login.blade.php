@@ -47,8 +47,15 @@
         <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
             <div class="flex flex-col space-y-1.5 p-6">
                 <div class="flex items-center justify-center mb-4">
-                    <svg class="h-12 w-12 text-primary" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    <svg class="h-12 w-12 text-primary"
+                         stroke="currentColor"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
                 </div>
 
@@ -61,11 +68,22 @@
                 </p>
             </div>
 
-            <form method="POST" action="{{ route('login.store') }}" class="p-6 pt-0 space-y-4">
+            <form id="signup-form" method="POST" action="{{ route('login.store') }}" class="p-6 pt-0 space-y-4">
                 @csrf
 
                 @if($errors->any())
-                    <div class="rounded-md border border-red-300 dark:border-red-700 bg-red-50 dark:bg-red-950 p-3 text-sm text-red-700 dark:text-red-300">
+                    <div @class([
+                        'rounded-md',
+                        'border',
+                        'border-red-300',
+                        'dark:border-red-700',
+                        'bg-red-50',
+                        'dark:bg-red-950',
+                        'p-3',
+                        'text-sm',
+                        'text-red-700',
+                        'dark:text-red-300',
+                    ])>
                         {{ $errors->first() }}
                     </div>
                 @endif
@@ -80,7 +98,26 @@
                         required
                         autofocus
                         autocomplete="email"
-                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        @class([
+                            'flex',
+                            'h-10',
+                            'w-full',
+                            'rounded-md',
+                            'border',
+                            'border-input',
+                            'bg-background',
+                            'px-3',
+                            'py-2',
+                            'text-sm',
+                            'ring-offset-background',
+                            'placeholder:text-muted-foreground',
+                            'focus-visible:outline-none',
+                            'focus-visible:ring-2',
+                            'focus-visible:ring-ring',
+                            'focus-visible:ring-offset-2',
+                            'disabled:cursor-not-allowed',
+                            'disabled:opacity-50',
+                        ])
                         placeholder="you@example.com"
                     />
                     @error('email')
@@ -96,7 +133,26 @@
                         name="password"
                         required
                         autocomplete="current-password"
-                        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        @class([
+                            'flex',
+                            'h-10',
+                            'w-full',
+                            'rounded-md',
+                            'border',
+                            'border-input',
+                            'bg-background',
+                            'px-3',
+                            'py-2',
+                            'text-sm',
+                            'ring-offset-background',
+                            'placeholder:text-muted-foreground',
+                            'focus-visible:outline-none',
+                            'focus-visible:ring-2',
+                            'focus-visible:ring-ring',
+                            'focus-visible:ring-offset-2',
+                            'disabled:cursor-not-allowed',
+                            'disabled:opacity-50',
+                        ])
                         placeholder="Enter your password"
                     />
                     @error('password')
@@ -104,13 +160,45 @@
                     @enderror
                 </div>
 
+            @if($failed)
+                <x-h-captcha-button :site_key="$site_key" />
+            @else
                 <button
                     type="submit"
-                    class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
+                    @class([
+                        'inline-flex',
+                        'items-center',
+                        'justify-center',
+                        'whitespace-nowrap',
+                        'rounded-md',
+                        'text-sm',
+                        'font-medium',
+                        'ring-offset-background',
+                        'transition-colors',
+                        'focus-visible:outline-none',
+                        'focus-visible:ring-2',
+                        'focus-visible:ring-ring',
+                        'focus-visible:ring-offset-2',
+                        'disabled:pointer-events-none',
+                        'disabled:opacity-50',
+                        'bg-primary',
+                        'text-primary-foreground',
+                        'hover:bg-primary/90',
+                        'h-10',
+                        'px-4',
+                        'py-2',
+                        'w-full',
+                    ])
                 >
                     Sign In
                 </button>
+            @endif
             </form>
+
+            @if($failed)
+                <x-h-captcha-script />
+            @endif
+
         </div>
     </div>
 </div>

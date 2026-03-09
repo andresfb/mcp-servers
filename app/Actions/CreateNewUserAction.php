@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 final readonly class CreateNewUserAction
 {
@@ -23,7 +22,7 @@ final readonly class CreateNewUserAction
                 'max:255',
                 Rule::unique(User::class),
             ],
-            'password' => $this->passwordRules(),
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ])->validate();
 
         return User::create([
@@ -31,10 +30,5 @@ final readonly class CreateNewUserAction
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
-    }
-
-    private function passwordRules(): array
-    {
-        return ['required', 'string', Password::default(), 'confirmed'];
     }
 }

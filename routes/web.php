@@ -9,8 +9,12 @@ Route::get('/', static function () {
     return view('home');
 });
 
-Route::get('/login', [LoginController::class, 'index'])
-    ->name('login');
+Route::middleware(['throttle:login'])->group(function () {
 
-Route::post('/login', [LoginController::class, 'store'])
-    ->name('login.store');
+    Route::get('/login', [LoginController::class, 'index'])
+        ->name('login');
+
+    Route::post('/login', [LoginController::class, 'store'])
+        ->name('login.store');
+
+});
