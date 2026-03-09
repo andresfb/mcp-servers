@@ -16,7 +16,7 @@ use Illuminate\View\View;
 
 final class LoginController extends Controller
 {
-    private string $cacheKey;
+    private readonly string $cacheKey;
 
     public function __construct()
     {
