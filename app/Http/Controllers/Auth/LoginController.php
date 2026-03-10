@@ -57,7 +57,8 @@ final class LoginController extends Controller
 
     private function hasFailed(): bool
     {
-        return Cache::has($this->cacheKey);
+        return Config::boolean('app.internal')
+            && Cache::has($this->cacheKey);
     }
 
     private function validate(Request $request): array

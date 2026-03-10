@@ -30,6 +30,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'internal' => (bool) env('APP_INTERNAL', false),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
