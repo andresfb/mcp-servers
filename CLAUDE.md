@@ -15,6 +15,7 @@ This application is a Laravel application and its main Laravel ecosystems packag
 - laravel/mcp (MCP) - v0
 - laravel/passport (PASSPORT) - v13
 - laravel/prompts (PROMPTS) - v0
+- laravel/sanctum (SANCTUM) - v4
 - larastan/larastan (LARASTAN) - v3
 - laravel/boost (BOOST) - v2
 - laravel/pail (PAIL) - v1

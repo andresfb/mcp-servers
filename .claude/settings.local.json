@@ -4,7 +4,9 @@
       "Bash(vendor/bin/pint:*)",
       "Bash(php artisan:*)",
       "mcp__laravel-boost__search-docs",
-      "Bash(vendor/bin/phpstan analyse:*)"
+      "Bash(vendor/bin/phpstan analyse:*)",
+      "Bash(composer require:*)",
+      "Bash(composer remove:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
