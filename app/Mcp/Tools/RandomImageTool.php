@@ -46,6 +46,7 @@ final class RandomImageTool extends Tool
 
     /**
      * @return array{fileName: string, base64: string, mimeType: string}
+     *
      * @throws Exception
      */
     private function loadInfo(ImogerImageItem $image): array

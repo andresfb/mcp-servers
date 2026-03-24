@@ -10,5 +10,5 @@ Route::prefix('v1')
         Route::post('/me', static function (Request $request) {
             return $request->user();
         })
-        ->name('me');
-});
+            ->name('me');
+    });

@@ -12,6 +12,7 @@ use Laravel\Mcp\Request;
 use Laravel\Mcp\Response;
 use Laravel\Mcp\Server\Attributes\Description;
 use Laravel\Mcp\Server\Tool;
+use Override;
 
 #[Description('A description of what this tool does.')]
 final class RandomGalleryTool extends Tool
@@ -43,10 +44,9 @@ final class RandomGalleryTool extends Tool
     }
 
     /**
-     * Get the tool's input schema.
-     *
-     * @return array<string, JsonSchema>
+     * @return array<string, mixed>
      */
+    #[Override]
     public function schema(JsonSchema $schema): array
     {
         return [
