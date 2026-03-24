@@ -35,12 +35,8 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureModels();
         $this->configureVite();
 
-        if ($this->app->isLocal() || Config::boolean('app.internal')) {
-            URL::forceScheme('http');
-        } else {
-            $this->app['request']->server->set('HTTPS', 'on');
-            URL::forceScheme('https');
-        }
+        $this->app['request']->server->set('HTTPS', 'on');
+        URL::forceScheme('https');
 
         RateLimiter::for('login', static fn (Request $request): array => [
             Limit::perMinute(25),

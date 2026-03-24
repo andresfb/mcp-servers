@@ -30,8 +30,9 @@ final class RandomGalleryTool extends Tool
             'count' => 'nullable|integer|min:1|max:48',
         ]);
 
+        $count = (int) ($validated['count'] ?? 6);
         $gallery = $this->apiLibrary
-            ->setCount($validated['count'] ?? 6)
+            ->setCount($count)
             ->setEndpoint(ImogerApiEndpoints::GALLERY)
             ->get();
 
