@@ -35,7 +35,7 @@ final class AddUserSettingCommand extends Command
             $results = form()
                 ->text(
                     label: 'Key Name',
-                    default: Config::string('prompter-api.api_key_name'),
+                    default: Config::string('imoger-api.api_key_name'),
                     required: true,
                     validate: 'string|max:255',
                     name: 'key',

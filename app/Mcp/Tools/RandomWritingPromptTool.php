@@ -21,27 +21,13 @@ final class RandomWritingPromptTool extends Tool
      */
     public function handle(Request $request): Response
     {
-        //        $validated = $request->validate([
-        //            'prompter' => 'nullable|string|max:4',
-        //        ]);
-
-        //        $prompt = $this->prompterService->random($validated['prompter'] ?? '');
         $prompt = $this->prompterService->random();
 
-        return Response::json($prompt->toArray());
+        return Response::text(
+            json_encode(
+                $prompt->toArray(),
+                JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            )
+        );
     }
-
-    //    /**
-    //     * Get the tool's input schema.
-    //     *
-    //     * @return array<string, JsonSchema>
-    //     */
-    //    public function schema(JsonSchema $schema): array
-    //    {
-    //        return [
-    //            'prompter' => $schema->string()
-    //                ->description('The code (optional)')
-    //                ->nullable(),
-    //        ];
-    //    }
 }

@@ -18,17 +18,8 @@ final readonly class PrompterService
     /**
      * @throws Exception
      */
-    //    public function random(string $prompter = ''): PrompterApiRandomItem
     public function random(): PrompterApiRandomItem
     {
-        //        $requestItem = null;
-        //        if (! blank($prompter)) {
-        //            $requestItem = new PrompterApiRequestItem(
-        //                ptr: $prompter,
-        //            );
-        //        }
-
-        //        return $this->library->get(PrompterApiEndpoints::RANDOM, $requestItem);
         return $this->library->get(PrompterApiEndpoints::RANDOM);
     }
 }

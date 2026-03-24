@@ -30,6 +30,8 @@ final class TestAppCommand extends Command
             intro('Running tests');
             Log::notice('Running tests');
 
+            $this->login();
+
         } catch (Exception $e) {
             warning($e->getTraceAsString());
             error($e->getMessage());
