@@ -22,7 +22,9 @@ final class ImogerApiResponse extends Data
     {
         if ($data instanceof stdClass) {
             return new self(
-                images: collect(ImogerImageItem::from($data->attributes)),
+                images: collect([
+                    ImogerImageItem::from($data->attributes)
+                ]),
                 count: 1
             );
         }

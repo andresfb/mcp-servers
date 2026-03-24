@@ -21,7 +21,7 @@ it('adds a setting for an authenticated user', function () {
         ->expectsPromptsOutro('Done')
         ->assertSuccessful();
 
-    $this->assertDatabaseHas('user_settigns', [
+    $this->assertDatabaseHas('user_settings', [
         'user_id' => $user->id,
         'key' => 'api_key',
     ]);
@@ -62,7 +62,7 @@ it('shows error when user does not exist', function () {
         ->expectsPromptsOutro('Done')
         ->assertSuccessful();
 
-    $this->assertDatabaseCount('user_settigns', 0);
+    $this->assertDatabaseCount('user_settings', 0);
 });
 
 it('shows error when password is invalid', function () {
@@ -76,5 +76,5 @@ it('shows error when password is invalid', function () {
         ->expectsPromptsOutro('Done')
         ->assertSuccessful();
 
-    $this->assertDatabaseCount('user_settigns', 0);
+    $this->assertDatabaseCount('user_settings', 0);
 });
